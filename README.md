@@ -1,13 +1,25 @@
-# What's This Kanji
+<div align="center">
+  <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" alt="App Icon" width="120"/>
 
-[![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
-[![API](https://img.shields.io/badge/API-31%2B-brightgreen.svg)](https://android-arsenal.com/api?level=31)
-[![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-blue.svg)](https://kotlinlang.org)
-[![Gradle](https://img.shields.io/badge/Gradle-8.13-blue.svg)](https://gradle.org)
-[![JDK](https://img.shields.io/badge/JDK-17-orange.svg)](https://openjdk.org)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+  # What's This Kanji
 
-Android app for Japanese text processing and kanji lookup with offline KANJIDIC2 dictionary.
+  [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
+  [![API](https://img.shields.io/badge/API-31%2B-brightgreen.svg)](https://android-arsenal.com/api?level=31)
+  [![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-blue.svg)](https://kotlinlang.org)
+  [![Gradle](https://img.shields.io/badge/Gradle-8.13-blue.svg)](https://gradle.org)
+  [![JDK](https://img.shields.io/badge/JDK-17-orange.svg)](https://openjdk.org)
+  [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+  Android app for Japanese text processing and kanji lookup with offline KANJIDIC2 dictionary.
+</div>
+
+## Screenshots
+
+<div align="center">
+  <img src="screenshots/main.png" alt="Main Screen" width="250"/>
+  <img src="screenshots/process_text.png" alt="Text Processing" width="250"/>
+  <img src="screenshots/saved_words.png" alt="Saved Words" width="250"/>
+</div>
 
 ## Features
 
