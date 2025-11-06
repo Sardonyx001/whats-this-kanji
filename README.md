@@ -3,6 +3,8 @@
 [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
 [![API](https://img.shields.io/badge/API-31%2B-brightgreen.svg)](https://android-arsenal.com/api?level=31)
 [![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-blue.svg)](https://kotlinlang.org)
+[![Gradle](https://img.shields.io/badge/Gradle-8.13-blue.svg)](https://gradle.org)
+[![JDK](https://img.shields.io/badge/JDK-17-orange.svg)](https://openjdk.org)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 Android app for Japanese text processing and kanji lookup with offline KANJIDIC2 dictionary.
