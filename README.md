@@ -56,6 +56,60 @@
 ./gradlew assembleDebug
 ```
 
+## Setting Up the Dictionary Database
+
+The app requires a pre-generated SQLite database from the KANJIDIC2 XML file. Follow these steps to set it up:
+
+### 1. Download KANJIDIC2
+
+Download the latest KANJIDIC2 XML file from the EDRDG project:
+
+```bash
+# Download the compressed XML file
+curl -O http://www.edrdg.org/kanjidic/kanjidic2.xml.gz
+
+# Extract it
+gunzip kanjidic2.xml.gz
+```
+
+### 2. Generate the Database
+
+Use the provided Python script to convert the XML file to a SQLite database:
+
+```bash
+# Requires Python 3 (no additional dependencies needed)
+python3 generate_database.py kanjidic2.xml
+```
+
+The script will:
+- Create a `kanjidic2.db` file with the correct schema
+- Parse ~13,000 kanji characters with their readings and meanings
+- Generate a ~3MB database file
+- Show progress and statistics during generation
+
+### 3. Copy to Assets
+
+After the database is generated, copy it to the app's assets folder:
+
+```bash
+cp kanjidic2.db app/src/main/assets/
+```
+
+### 4. Build the App
+
+Now you can build the app with the dictionary included:
+
+```bash
+./gradlew assembleDebug
+```
+
+### Troubleshooting
+
+- **Python not found**: Install Python 3.6 or higher
+- **XML parsing errors**: Ensure you downloaded the complete XML file
+- **Database size**: The final database should be around 3MB
+- **App crashes on launch**: Verify the database file is in `app/src/main/assets/kanjidic2.db`
+
 ## Dictionary Data
 
 This app uses the [KANJIDIC2](http://www.edrdg.org/wiki/index.php/KANJIDIC_Project) dictionary, developed by the Electronic Dictionary Research and Development Group (EDRDG).

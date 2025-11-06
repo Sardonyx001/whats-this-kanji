@@ -2,8 +2,24 @@ name: Build APK
 
 on:
   push:
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+      - '.idea/**'
+      - 'screenshots/**'
+      - '.gitignore'
+      - 'generate_database.py'
+      - 'data/**'
     branches: [ main ]
   pull_request:
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+      - '.idea/**'
+      - 'screenshots/**'
+      - '.gitignore'
+      - 'generate_database.py'
+      - 'data/**'
     branches: [ main ]
   workflow_dispatch:
 
