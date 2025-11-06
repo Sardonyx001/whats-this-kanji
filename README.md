@@ -1,7 +1,7 @@
 <div align="center">
   <img src="app/src/main/res/mipmap-xxxhdpi/ic_launcher_foreground.webp" alt="App Icon" width="120"/>
 
-  # What's This Kanji
+# What's This Kanji
 
   [![Android](https://img.shields.io/badge/Platform-Android-green.svg)](https://developer.android.com)
   [![API](https://img.shields.io/badge/API-31%2B-brightgreen.svg)](https://android-arsenal.com/api?level=31)
@@ -16,9 +16,9 @@
 ## Screenshots
 
 <div align="center">
-  <img src="screenshots/main.png" alt="Main Screen" width="250"/>
-  <img src="screenshots/process_text.png" alt="Text Processing" width="250"/>
-  <img src="screenshots/saved_words.png" alt="Saved Words" width="250"/>
+  <img src="screenshots/main.png" alt="Main Screen" width="200"/>
+  <img src="screenshots/process_text_select.png" alt="Text Processing" width="200"/>
+  <img src="screenshots/process_text_explain.png" alt="Text Processing" width="200"/>
 </div>
 
 ## Features
@@ -59,6 +59,14 @@
 ## Dictionary Data
 
 This app uses the [KANJIDIC2](http://www.edrdg.org/wiki/index.php/KANJIDIC_Project) dictionary, developed by the Electronic Dictionary Research and Development Group (EDRDG).
+
+## More Screenshots
+
+<div align="center">
+  <img src="screenshots/process_text_save.png" alt="Text Processing" width="200"/>
+  <img src="screenshots/saved_words.png" alt="Saved Words" width="200"/>
+  <img src="screenshots/dictionary_init.png" alt="Dictionary Initialization" width="200"/>
+</div>
 
 ## License
 
