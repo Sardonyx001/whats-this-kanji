@@ -267,22 +267,33 @@ fun WordReadingCard(
             .joinToString(", ")
     }
 
+    // Check if already saved on first composition
+    LaunchedEffect(wordReading) {
+        scope.launch {
+            val existingWord = database.kanjiDao().getSavedWordByWordAndReading(
+                wordReading.word,
+                wordReading.reading
+            )
+            if (existingWord != null) {
+                isSaved = true
+            }
+        }
+    }
+
     // Auto-save if enabled
     LaunchedEffect(wordReading, preferences.autoSaveWords) {
         if (preferences.autoSaveWords && !isSaved) {
             scope.launch {
-                try {
-                    val savedWord = SavedWordEntity(
-                        word = wordReading.word,
-                        reading = wordReading.reading,
-                        meaning = meanings.ifBlank { wordReading.partOfSpeech },
-                        context = selectedText
-                    )
-                    database.kanjiDao().insertSavedWord(savedWord)
+                val savedWord = SavedWordEntity(
+                    word = wordReading.word,
+                    reading = wordReading.reading,
+                    meaning = meanings.ifBlank { wordReading.partOfSpeech },
+                    context = selectedText
+                )
+                val rowId = database.kanjiDao().insertSavedWord(savedWord)
+                if (rowId > 0) {
                     isSaved = true
                     showSavedMessage = true
-                } catch (e: Exception) {
-                    // Handle error silently (might be duplicate)
                 }
             }
         }
@@ -343,18 +354,16 @@ fun WordReadingCard(
             IconButton(
                 onClick = {
                     scope.launch {
-                        try {
-                            val savedWord = SavedWordEntity(
-                                word = wordReading.word,
-                                reading = wordReading.reading,
-                                meaning = meanings.ifBlank { wordReading.partOfSpeech },
-                                context = selectedText
-                            )
-                            database.kanjiDao().insertSavedWord(savedWord)
+                        val savedWord = SavedWordEntity(
+                            word = wordReading.word,
+                            reading = wordReading.reading,
+                            meaning = meanings.ifBlank { wordReading.partOfSpeech },
+                            context = selectedText
+                        )
+                        val rowId = database.kanjiDao().insertSavedWord(savedWord)
+                        if (rowId > 0) {
                             isSaved = true
                             showSavedMessage = true
-                        } catch (e: Exception) {
-                            // Handle error silently
                         }
                     }
                 },

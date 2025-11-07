@@ -64,7 +64,10 @@ data class DictionaryMetadata(
  */
 @Entity(
     tableName = "saved_words",
-    indices = [Index(value = ["timestamp"])]
+    indices = [
+        Index(value = ["timestamp"]),
+        Index(value = ["word", "reading"], unique = true)
+    ]
 )
 data class SavedWordEntity(
     @PrimaryKey(autoGenerate = true)

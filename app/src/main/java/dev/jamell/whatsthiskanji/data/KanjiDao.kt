@@ -104,7 +104,7 @@ interface KanjiDao {
     }
 
     // Saved Words operations
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertSavedWord(word: SavedWordEntity): Long
 
     @Query("SELECT * FROM saved_words ORDER BY timestamp DESC")
@@ -112,6 +112,9 @@ interface KanjiDao {
 
     @Query("SELECT * FROM saved_words WHERE word = :word LIMIT 1")
     suspend fun getSavedWord(word: String): SavedWordEntity?
+
+    @Query("SELECT * FROM saved_words WHERE word = :word AND reading = :reading LIMIT 1")
+    suspend fun getSavedWordByWordAndReading(word: String, reading: String): SavedWordEntity?
 
     @Delete
     suspend fun deleteSavedWord(word: SavedWordEntity)
