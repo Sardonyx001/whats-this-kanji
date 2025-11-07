@@ -8,6 +8,7 @@
   [![Kotlin](https://img.shields.io/badge/Kotlin-2.0.21-blue.svg)](https://kotlinlang.org)
   [![Gradle](https://img.shields.io/badge/Gradle-8.13-blue.svg)](https://gradle.org)
   [![JDK](https://img.shields.io/badge/JDK-17-orange.svg)](https://openjdk.org)
+  [![GitHub Release](https://img.shields.io/github/v/release/sardonyx001/whats-this-kanji)](https://github.com/sardonyx001/whats-this-kanji/releases)
   [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
   Android app for Japanese text processing and kanji lookup with offline KANJIDIC2 dictionary.
