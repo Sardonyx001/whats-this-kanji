@@ -94,6 +94,7 @@ python3 generate_database.py kanjidic2.xml
 ```
 
 The script will:
+
 - Create a `kanjidic2.db` file with the correct schema
 - Parse ~13,000 kanji characters with their readings and meanings
 - Generate a ~3MB database file
