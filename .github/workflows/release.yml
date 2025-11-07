@@ -53,7 +53,7 @@ jobs:
         # Extract tag message or use default
         TAG_MESSAGE=$(git tag -l --format='%(contents)' ${{ github.ref_name }})
         if [ -z "$TAG_MESSAGE" ]; then
-          TAG_MESSAGE="Release ${{ github.ref_name }}"
+          TAG_MESSAGE="whatsthiskanji ${{ github.ref_name }}"
         fi
         echo "notes<<EOF" >> $GITHUB_OUTPUT
         echo "$TAG_MESSAGE" >> $GITHUB_OUTPUT
