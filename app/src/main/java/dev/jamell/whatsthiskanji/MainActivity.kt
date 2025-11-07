@@ -105,6 +105,26 @@ fun SimpleMainScreen(onInitialize: () -> Unit) {
             )
         }
 
+        Spacer(modifier = Modifier.height(12.dp))
+
+        // Settings Button
+        OutlinedButton(
+            onClick = {
+                val intent = Intent(context, SettingsActivity::class.java)
+                context.startActivity(intent)
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            shape = MaterialTheme.shapes.small
+        ) {
+            Text(
+                text = "Settings",
+                style = MaterialTheme.typography.bodyLarge,
+                fontWeight = FontWeight.Normal
+            )
+        }
+
         Spacer(modifier = Modifier.height(48.dp))
 
         // Usage hint - subtle
