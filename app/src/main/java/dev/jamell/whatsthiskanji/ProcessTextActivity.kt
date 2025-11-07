@@ -77,8 +77,16 @@ fun ProcessTextScreen(
     var wordReadings by remember { mutableStateOf<List<WordReading>>(emptyList()) }
     var kanjiDetails by remember { mutableStateOf<List<KanjiWithReadingsAndMeanings>>(emptyList()) }
     var errorMessage by remember { mutableStateOf<String?>(null) }
+    var showFullText by remember { mutableStateOf(false) }
 
     val scope = rememberCoroutineScope()
+
+    // Truncate text if too long (max 100 characters for display)
+    val displayText = if (!showFullText && selectedText.length > 100) {
+        selectedText.take(100) + "..."
+    } else {
+        selectedText
+    }
 
     LaunchedEffect(selectedText) {
         scope.launch {
@@ -150,14 +158,31 @@ fun ProcessTextScreen(
                         .padding(24.dp)
                         .verticalScroll(rememberScrollState())
                 ) {
-                    // Display selected text - minimal
-                    Text(
-                        text = selectedText,
-                        style = MaterialTheme.typography.bodyLarge,
-                        fontSize = 20.sp,
-                        lineHeight = 32.sp,
-                        modifier = Modifier.padding(bottom = 32.dp)
-                    )
+                    // Display selected text - minimal with truncation
+                    Column {
+                        Text(
+                            text = displayText,
+                            style = MaterialTheme.typography.bodyLarge,
+                            fontSize = 20.sp,
+                            lineHeight = 32.sp,
+                            modifier = Modifier.padding(bottom = if (selectedText.length > 100 && !showFullText) 8.dp else 32.dp)
+                        )
+
+                        // Show "see more" button if text is truncated
+                        if (selectedText.length > 100 && !showFullText) {
+                            TextButton(
+                                onClick = { showFullText = true },
+                                contentPadding = PaddingValues(0.dp),
+                                modifier = Modifier.padding(bottom = 24.dp)
+                            ) {
+                                Text(
+                                    "See more",
+                                    style = MaterialTheme.typography.labelSmall,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            }
+                        }
+                    }
 
                     // Word Readings Section
                     if (wordReadings.isNotEmpty()) {
@@ -222,6 +247,11 @@ fun WordReadingCard(
     var isSaved by remember { mutableStateOf(false) }
     var showSavedMessage by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val preferencesRepository = remember { dev.jamell.whatsthiskanji.settings.UserPreferencesRepository(context) }
+    val preferences by preferencesRepository.userPreferencesFlow.collectAsState(
+        initial = dev.jamell.whatsthiskanji.settings.UserPreferences()
+    )
 
     // Get meanings from kanji in this word
     val meanings = remember(wordReading, kanjiDetails) {
@@ -235,6 +265,27 @@ fun WordReadingCard(
             .distinct()
             .take(3)
             .joinToString(", ")
+    }
+
+    // Auto-save if enabled
+    LaunchedEffect(wordReading, preferences.autoSaveWords) {
+        if (preferences.autoSaveWords && !isSaved) {
+            scope.launch {
+                try {
+                    val savedWord = SavedWordEntity(
+                        word = wordReading.word,
+                        reading = wordReading.reading,
+                        meaning = meanings.ifBlank { wordReading.partOfSpeech },
+                        context = selectedText
+                    )
+                    database.kanjiDao().insertSavedWord(savedWord)
+                    isSaved = true
+                    showSavedMessage = true
+                } catch (e: Exception) {
+                    // Handle error silently (might be duplicate)
+                }
+            }
+        }
     }
 
     Column(

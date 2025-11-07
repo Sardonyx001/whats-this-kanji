@@ -41,18 +41,43 @@
             android:exported="false"
             android:theme="@style/Theme.WhatsThisKanji" />
 
-        <!-- Activity for processing selected text -->
+        <!-- Router activity for processing selected text -->
         <activity
-            android:name=".ProcessTextActivity"
+            android:name=".TextProcessRouter"
             android:exported="true"
             android:label="Kanji Reading"
-            android:theme="@style/Theme.WhatsThisKanji">
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.PROCESS_TEXT" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
+
+        <!-- Popup window for short text -->
+        <activity
+            android:name=".PopupTextActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Bottom sheet for medium text -->
+        <activity
+            android:name=".BottomSheetTextActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <!-- Full screen activity for long text -->
+        <activity
+            android:name=".ProcessTextActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WhatsThisKanji" />
+
+        <!-- Settings activity -->
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WhatsThisKanji" />
     </application>
 
 </manifest>

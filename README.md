@@ -24,11 +24,17 @@
 
 ## Features
 
+- **Multiple Display Modes**: Choose how you want to see readings
+  - Compact popup for quick glances (short text)
+  - Bottom sheet overlay for medium text
+  - Full-screen view with complete details
+- **Configurable Settings**: Customize character limits and display preferences
+- **Auto-Save Words**: Automatically save looked-up words for later review
 - System-wide text selection support via PROCESS_TEXT intent
 - Offline kanji dictionary with 13,000+ characters
 - Japanese text tokenization and word segmentation
 - Readings (on-yomi and kun-yomi) and English meanings
-- Save words for review
+- Custom LINE Seed fonts for better Japanese text rendering
 - Material 3 design with light/dark theme support
 
 ## Technical Stack
@@ -48,8 +54,13 @@
 
 1. Select Japanese text in any app
 2. Tap "Kanji Reading" in the text selection menu
-3. View readings, meanings, and kanji details
-4. Save words for later review
+3. View readings in your preferred display mode:
+   - **Popup**: Quick view for short text (configurable up to 30 characters)
+   - **Bottom Sheet**: Split-pane view for medium text with independent scrolling
+   - **Full Screen**: Complete details with kanji information
+4. Tap "View Full Details" to see more information
+5. Configure display preferences in Settings
+6. Enable auto-save to automatically save looked-up words
 
 ## Building
 
